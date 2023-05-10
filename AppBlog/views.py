@@ -33,19 +33,25 @@ def etiquetas(request):
 
 
 def crear_etiquetas(request):
-    if request.method == "POST":
-        formulario = Formulario_Etiquetas(request.POST)
+   if request.method == "POST":
+       formulario = Formulario_Etiquetas(request.POST)
 
-        if formulario.is_valid():
-            etiqueta = formulario.save()
-
-            # Redirecciono al usuario a la lista de etiquetas
-            url_exitosa = reverse('crear_etiquetas')  
-            return redirect(url_exitosa)
-
-    else:
-        formulario = Formulario_Etiquetas()
-
-    return render(request, 'AppBlog/crear_etiquetas.html', {'formulario': formulario})
-
+       if formulario.is_valid():
+           etiquetas_del_post = formulario.cleaned_data["etiquetas_del_post"]
+           etiquetas = Etiquetas(etiquetas_del_post=etiquetas_del_post)
+           etiquetas.save()
+           
+           # Redirecciono al usuario a la lista de cursos
+           url_exitosa = reverse('crear_etiquetas')  
+           return redirect(url_exitosa)
+       
+   else:  
+       formulario = Formulario_Etiquetas()
+   
+   http_response = render(
+       request=request,
+       template_name='AppBlog/formulario_etiquetas.html',
+       context={'formulario': formulario}
+   )
+   return http_response
 
