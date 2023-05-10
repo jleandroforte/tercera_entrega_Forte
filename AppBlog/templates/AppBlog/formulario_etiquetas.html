@@ -1,16 +1,11 @@
-
 {% extends 'AppBlog/base.html' %}
 {% load static %}
 
 {% block content %}
-
-<form action="{% url 'crear_etiquetas' %} " method="post">
-    {% csrf_token %}
-    {{ formulario.as_p }}
-    {{formulario.errors}}
-
-    <input type ="submit" value="Enviar" />    
-
-</form>
-
-{% endblock content%}
+    <form action="{% url 'crear_etiquetas' %}" method="post">
+        {% csrf_token %}
+        {{ formulario.as_p }}
+        {{ formulario.errors }}
+        <input type="submit" value="Enviar" />
+    </form>
+{% endblock content %}

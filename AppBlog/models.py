@@ -15,7 +15,14 @@ class Autor(models.Model):
     def __str__(self):
         return self.nombre_autor()
     
-class Etiquetas(models.Model): 
+'''class Etiquetas(models.Model): 
     etiquetas_del_post=models.CharField(max_length=255)
     def __str__(self):
-        return self.etiquetas_del_post()
+        return self.etiquetas_del_post()'''
+    
+    
+class Etiquetas(models.Model): 
+    etiquetas_del_post = models.CharField(max_length=255)
+
+    def _str_(self):
+        return self.etiquetas_del_post
