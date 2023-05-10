@@ -11,6 +11,13 @@
 
       <br><br>
       
+      
+    <p> Vista Inicio <p/> 
+   
+    <p> Usar el formulario debajo para buscar etiquetas de posts.  <p>
+
+    
+    <p> 
       <form action="{% url 'buscar_etiquetas' %}" method="post">
         {% csrf_token %}
         {{form}}
@@ -33,6 +40,8 @@
 
       {% endif %}
       
+
+    <p>  
     </div>
    </section>
    
