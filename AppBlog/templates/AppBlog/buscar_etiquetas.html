@@ -13,15 +13,26 @@
       
       <form action="{% url 'buscar_etiquetas' %}" method="post">
         {% csrf_token %}
-        <input type="text" name="busqueda">
+        {{form}}
+        
         <input type="submit" value="Buscar por etiqueta">
       </form>
       <br>
+
+      {%  if etiquetas_del_post %}
+
       <ul>
-      {% for etiqueta in etiquetas %}
-        <li>{{ etiqueta.etiqueta }}</li>
+      {% for etiqueta in etiquetas_del_post %}
+
+      <li>La etiqueta {{ etiqueta.etiquetas_del_post }} se encuentra en la base </li>
       {% endfor %}
-      </ul>
+    </ul>
+      
+    {% else %}
+        No se encontraron datos
+
+      {% endif %}
+      
     </div>
    </section>
    

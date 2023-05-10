@@ -58,16 +58,27 @@ def crear_etiquetas(request):   # funcion para crear etiquetas.
 # funcion para buscar etiquetas 
 
 def buscar_etiquetas(request):
-   if request.method == "POST":
-       data = request.POST
-       busqueda = data["busqueda"]
-       etiquetas_del_post = Etiquetas.objects.filter(etiquetas_del_post__contains=busqueda)
-       contexto = {
-           "etiquetas_del_post": etiquetas_del_post,
-       }
-       http_response = render(
-           request=request,
-           template_name='AppBlog/buscar_etiquetas.html',
+   nombre_de_busqueda= request.GET.get('etiquetas_del_post')
+   print (nombre_de_busqueda)
+   
+   if nombre_de_busqueda: 
+       lista=Etiquetas.objects.filter(etiquetas_del_post__icontains=nombre_de_busqueda)
+   else:
+       lista=Etiquetas.objects.all()
+       
+   form = Formulario_Etiquetas()
+   
+   contexto={
+       'etiquetas_del_post':lista, 
+       'form': form       
+   }
+    
+   http_response=render(
+       
+       request=request,
+       template_name='AppBlog/buscar_etiquetas.html', 
        context=contexto
-       )
-       return http_response
+   )
+   
+   return http_response
+       
