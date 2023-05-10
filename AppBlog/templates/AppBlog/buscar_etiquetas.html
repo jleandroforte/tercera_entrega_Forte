@@ -28,16 +28,16 @@
       <br>
 
       {% if mensaje %}
-
-      <p>{{mensaje}}</p>
-
-    </ul>
       
-      {% else %}
+        <p>{{ mensaje }}</p>
         
-     <p>{{mensaje}}</p>
-        {% endif %}
-      
+    {% else %}
+        <ul>
+            {% for etiqueta in etiquetas_del_post %}
+                <li>La etiqueta {{ etiqueta.etiquetas_del_post }} se encuentra en la base de datos.</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 
     <p>  
     </div>
