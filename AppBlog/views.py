@@ -31,8 +31,9 @@ def autores(request):
 def etiquetas(request): 
     return render(request, 'AppBlog/etiquetas.html')
 
+# funcion para crear etiquetas.     
 
-def crear_etiquetas(request):   # funcion para crear etiquetas.     
+def crear_etiquetas(request):   
    if request.method == "POST":
        formulario = Formulario_Etiquetas(request.POST)
 
@@ -40,8 +41,7 @@ def crear_etiquetas(request):   # funcion para crear etiquetas.
            etiquetas_del_post = formulario.cleaned_data["etiquetas_del_post"]
            etiquetas = Etiquetas(etiquetas_del_post=etiquetas_del_post)
            etiquetas.save()
-           
-           # Redirecciono al usuario a la lista de cursos
+        
            url_exitosa = reverse('crear_etiquetas')  
            return redirect(url_exitosa)
        
@@ -79,3 +79,27 @@ def buscar_etiquetas(request):
     else:
         
         return render(request, 'AppBlog/buscar_etiquetas.html', {"form": Formulario_Etiquetas()})
+
+
+
+def crear_autor(request):   
+   if request.method == "POST":
+       formulario = Formulario_Autor(request.POST)
+
+       if formulario.is_valid():
+           nombre_autor = formulario.cleaned_data["nombre_autor"]
+           autores = Autor(nombre_autor=nombre_autor)
+           autores.save()
+        
+           url_exitosa = reverse('crear_autor')  
+           return redirect(url_exitosa)
+       
+   else:  
+       formulario = Formulario_Autor()
+   
+   http_response = render(
+       request=request,
+       template_name='AppBlog/formulario_autor.html',
+       context={'formulario': formulario}
+   )
+   return http_response

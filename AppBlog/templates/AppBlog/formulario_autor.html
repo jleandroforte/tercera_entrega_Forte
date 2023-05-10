@@ -1,0 +1,20 @@
+{% extends 'AppBlog/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <p> Vista Autores  <p/>  
+
+    <p> Utilizar el formulario debajo para enviar autores a la base de datos <p>
+    
+    <p>     
+    <form action="{% url 'crear_autor' %}" method="post">
+        {% csrf_token %}
+        {{ formulario.as_p }}
+        {{ formulario.errors }}
+        <input type="submit" value="Enviar" />
+    </form>
+
+    <p> 
+
+{%  endblock %}
