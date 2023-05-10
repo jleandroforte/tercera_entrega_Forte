@@ -5,8 +5,7 @@
 
 <section>
     <div>
-      <h1>Lista de etiquetas </h1>
-
+      
       <a href="{% url 'crear_etiquetas' %}">Crear etiquetas</a>
 
       <br><br>
@@ -18,27 +17,26 @@
 
     
     <p> 
-      <form action="{% url 'buscar_etiquetas' %}" method="post">
+      <form action="{% url 'buscar_etiquetas' %}" method="get">
+
         {% csrf_token %}
+
         {{form}}
         
         <input type="submit" value="Buscar por etiqueta">
       </form>
       <br>
 
-      {%  if etiquetas_del_post %}
+      {% if mensaje %}
 
-      <ul>
-      {% for etiqueta in etiquetas_del_post %}
+      <p>{{mensaje}}</p>
 
-      <li>La etiqueta {{ etiqueta.etiquetas_del_post }} se encuentra en la base </li>
-      {% endfor %}
     </ul>
       
-    {% else %}
-        No se encontraron datos
-
-      {% endif %}
+      {% else %}
+        
+     <p>{{mensaje}}</p>
+        {% endif %}
       
 
     <p>  
