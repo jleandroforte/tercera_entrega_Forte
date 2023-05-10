@@ -9,6 +9,9 @@ urlpatterns = [
    path('etiquetas/',views.etiquetas, name='Etiquetas'),
    path('posts/',views.posts, name='Posts'),  
    path('crear_etiquetas/',views.crear_etiquetas, name='crear_etiquetas'),
+   path('buscar_etiquetas/',views.buscar_etiquetas, name='buscar_etiquetas'),
+
+   
 
   
 

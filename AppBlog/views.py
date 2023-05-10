@@ -32,7 +32,7 @@ def etiquetas(request):
     return render(request, 'AppBlog/etiquetas.html')
 
 
-def crear_etiquetas(request):
+def crear_etiquetas(request):   # funcion para crear etiquetas.     
    if request.method == "POST":
        formulario = Formulario_Etiquetas(request.POST)
 
@@ -55,3 +55,19 @@ def crear_etiquetas(request):
    )
    return http_response
 
+# funcion para buscar etiquetas 
+
+def buscar_etiquetas(request):
+   if request.method == "POST":
+       data = request.POST
+       busqueda = data["busqueda"]
+       etiquetas_del_post = Etiquetas.objects.filter(etiquetas_del_post__contains=busqueda)
+       contexto = {
+           "etiquetas_del_post": etiquetas_del_post,
+       }
+       http_response = render(
+           request=request,
+           template_name='AppBlog/buscar_etiquetas.html',
+       context=contexto
+       )
+       return http_response
