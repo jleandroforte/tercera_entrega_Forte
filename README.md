@@ -4,18 +4,18 @@ El proyecto está armando en Django 4.2.
 El acceso básico es a “http://127.0.0.1:8000/AppBlog/”  O al puerto que se indique, pero es indispensable ir a /AppBlog para empezar. 
 
 El sitio se compone de una aplicación (‘AppBlog’) con  4 modelos/urls: 
-AppBlog/: Esta la página de Inicio, donde buscamos si una etiqueta nos indica si se encuentra en la base de datos. 
+AppBlog/: Esta la página de Inicio, donde buscamos si una etiqueta se encuentra en la base de datos. 
 AppBlog/autores/: Donde se envían a la base de datos la información de los autores de un post (nombre del autor) 
-AppBlog/etiquetas/: Donde se envían a la base de datos las etiquetas de los posts. 
-AppBlog/posts/: Donde se envían a la base de datos las variables de los posteos con las siguientes especificaciones: 
+AppBlog/etiquetas/: Donde se envían a la base de datos las etiquetas de los posts.Estas estiquetas despues pueden ser buscadas desde el inicio.
+AppBlog/posts/: Donde se envían a la base de datos las siguientes variables relacionadas a posteos con los siguientes parámetros: 
 
 titulo=models.CharField(max_length=255) 
-    cuerpo=models.TextField() 
-    fecha_publicacion=models.DateField()
-    autor=models.CharField(max_length=255)
-    email_autor=models.EmailField()
+cuerpo=models.TextField() 
+fecha_publicacion=models.DateField()
+autor=models.CharField(max_length=255)
+email_autor=models.EmailField()
 
-Para chequear que lo que enviamos por formulario esté en la base de datos más allá de la barra de búsqueda en Inicio debemos ir al admin: http://127.0.0.1:8000/admin/ 
+Para chequear que lo que enviamos por formulario esté en la base de datos más allá de la barra de búsqueda en Inicio (sólo para etiquetas) debemos ir al admin: http://127.0.0.1:8000/admin/ 
 
 Finalmente, el proyecto tiene herencia de templates, podemos navegar entre categorías en la parte superior de cada página. 
 
