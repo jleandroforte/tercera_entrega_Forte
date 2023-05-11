@@ -118,8 +118,8 @@ def crear_posts(request):
            cuerpos.save()   
            
            fecha_publicacion = formulario.cleaned_data["fecha_publicacion"]
-           fecha_publicacion = Posts(fecha_publicacion=fecha_publicacion)
-           fecha_publicacion.save()   
+           fecha_publicaciones = Posts(fecha_publicacion=fecha_publicacion)
+           fecha_publicaciones.save()   
            
            autor = formulario.cleaned_data["autor"]
            autores = Posts(autor=autor)

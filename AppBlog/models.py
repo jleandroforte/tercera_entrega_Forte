@@ -6,7 +6,7 @@ from datetime import *
 class Posts(models.Model): 
     titulo=models.CharField(max_length=255) 
     cuerpo=models.TextField() 
-    fecha_publicacion=models.DateField()
+    fecha_publicacion=models.DateField(null=False, blank=False, auto_now_add=True)
     autor=models.CharField(max_length=255)
     email_autor=models.EmailField()
 
