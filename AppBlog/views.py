@@ -103,3 +103,42 @@ def crear_autor(request):
        context={'formulario': formulario}
    )
    return http_response
+
+def crear_posts(request):   
+   if request.method == "POST":
+       formulario = Formulario_Posts(request.POST)
+
+       if formulario.is_valid():
+           titulo = formulario.cleaned_data["titulo"]
+           titulos = Posts(titulo=titulo)
+           titulos.save()
+        
+           cuerpo = formulario.cleaned_data["cuerpo"]
+           cuerpos = Posts(cuerpo=cuerpo)
+           cuerpos.save()   
+           
+           fecha_publicacion = formulario.cleaned_data["fecha_publicacion"]
+           fecha_publicacion = Posts(fecha_publicacion=fecha_publicacion)
+           fecha_publicacion.save()   
+           
+           autor = formulario.cleaned_data["autor"]
+           autores = Posts(autor=autor)
+           autores.save()  
+           
+           email_autor = formulario.cleaned_data["email_autor"]
+           email_autores = Posts(email_autor=email_autor)
+           email_autores.save()
+        
+        
+           url_exitosa = reverse('crear_posts')  
+           return redirect(url_exitosa)
+       
+   else:  
+       formulario = Formulario_Posts()
+   
+   http_response = render(
+       request=request,
+       template_name='AppBlog/formulario_posts.html',
+       context={'formulario': formulario}
+   )
+   return http_response
